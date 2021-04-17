@@ -17,6 +17,7 @@ I'm going to put all complex katas that I complete in this repo
   - Roman Numerals Helper > [my code](https://github.com/rafalou38/code-wars/blob/main/Roman_Numerals_Helper.ipynb) | [code wars](https://www.codewars.com/kata/51b66044bce5799a7f000003)
   - Scraping: Codewars Top 500 Users > [my code](https://github.com/rafalou38/code-wars/Scraping_Codewars_Top_500_Users.ipynb) | [code wars](https://www.codewars.com/kata/581c06b95cfa838603000435)
   - Sudoku Solution Validator > [my code](https://github.com/rafalou38/code-wars/SudokuSolutionValidator.py) | [code wars](https://www.codewars.com/kata/529bf0e9bdf7657179000008)
+  - Strip Comments > [my code](https://github.com/rafalou38/code-wars/StripComments.js) | [code wars](https://www.codewars.com/kata/51c8e37cee245da6b40000bd)
 - ![5 kyu](https://res.cloudinary.com/dr844cxrp/image/upload/v1609613886/kyu/5_kyu_eejjlw.svg)
   - none
 - ![6 kyu](https://res.cloudinary.com/dr844cxrp/image/upload/v1609613886/kyu/6_kyu_sxzest.svg)
