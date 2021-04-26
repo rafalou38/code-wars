@@ -19,7 +19,7 @@ I'm going to put all complex katas that I complete in this repo
   - Sudoku Solution Validator > [my code](https://github.com/rafalou38/code-wars/tree/main/katas/SudokuSolutionValidator.py) | [code wars](https://www.codewars.com/kata/529bf0e9bdf7657179000008)
   - Strip Comments > [my code](https://github.com/rafalou38/code-wars/tree/main/katas/StripComments.js) | [code wars](https://www.codewars.com/kata/51c8e37cee245da6b40000bd)
 - ![5 kyu](https://res.cloudinary.com/dr844cxrp/image/upload/v1609613886/kyu/5_kyu_eejjlw.svg)
-  - none
+  - Valid Parentheses > [my code](./katas/ValidParentheses.js) | [code wars](https://www.codewars.com/kata/52774a314c2333f0a7000688)
 - ![6 kyu](https://res.cloudinary.com/dr844cxrp/image/upload/v1609613886/kyu/6_kyu_sxzest.svg)
   - none
 - ![7 kyu](https://res.cloudinary.com/dr844cxrp/image/upload/v1609613886/kyu/7_kyu_ceaeih.svg)
