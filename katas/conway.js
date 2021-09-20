@@ -7,7 +7,7 @@
 function getGeneration(rows, generations) {
     const height = rows.length;
     const width = rows[0].length;
-    const new_gen = []
+    let new_gen = []
 
 
     // add one cell around all
@@ -24,24 +24,44 @@ function getGeneration(rows, generations) {
         new Array(width+2).fill(0),
     ]
 
+    // fill new gen
+    new_gen = new Array(width).map(
+        e=>new Array(height).fill(0)
+    )
+    console.log({rows,new_gen})
+
     console.log(htmlize(rows));
-    for (let y = 0; y < rows.length; y++) {
+    for (let y = 1; y < rows.length-1; y++) {
         const row = rows[y];
-        for (let x = 0; x < row.length; x++) {
+        for (let x = 1; x < row.length-1; x++) {
             const cell = row[x];
             const neigbours = 0
                 + rows[y - 1][x - 1]
                 + rows[y - 1][x]
                 + rows[y - 1][x + 1]
                 + rows[y][x - 1]
-                + rows[y][x]
+                //+ rows[y][x]
                 + rows[y][x + 1]
                 + rows[y + 1][x - 1]
                 + rows[y + 1][x]
                 + rows[y + 1][x + 1]
+            
+            if (neigbours <2 || neigbours > 3) {
+                new_gen[y][x] = 0
+            }else{
+                new_gen[y][x] = 1
+            }
+
             console.log({
                 y,x,neigbours
             });
         }
     }
 }
+
+
+getGeneration([
+    [1, 0, 0],
+    [0, 1, 1],
+    [1, 1, 0]
+  ])
