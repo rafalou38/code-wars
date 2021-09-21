@@ -1,6 +1,6 @@
 
 /**
- * 
+ * https://www.codewars.com/kata/52423db9add6f6fc39000354/train/javascript
  * @param {number[][]} rows 
  * @param {number} generations 
  */
@@ -25,12 +25,12 @@ function getGeneration(rows, generations) {
     ]
 
     // fill new gen
-    new_gen = new Array(width).map(
+    new_gen = new Array(width).fill().map(
         e=>new Array(height).fill(0)
     )
     console.log({rows,new_gen})
 
-    console.log(htmlize(rows));
+    //console.log(htmlize(rows));
     for (let y = 1; y < rows.length-1; y++) {
         const row = rows[y];
         for (let x = 1; x < row.length-1; x++) {
@@ -46,10 +46,10 @@ function getGeneration(rows, generations) {
                 + rows[y + 1][x]
                 + rows[y + 1][x + 1]
             
-            if (neigbours <2 || neigbours > 3) {
-                new_gen[y][x] = 0
+            if (neigbours < 2 || neigbours > 3) {
+                new_gen[y-1][x-1] = 0
             }else{
-                new_gen[y][x] = 1
+                new_gen[y-1][x-1] = 1
             }
 
             console.log({
@@ -57,6 +57,7 @@ function getGeneration(rows, generations) {
             });
         }
     }
+    return new_gen
 }
 
 
