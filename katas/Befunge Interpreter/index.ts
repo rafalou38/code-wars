@@ -4,7 +4,7 @@ class BefungeInterpreter {
 
   pos = new Vector2(0,0);
 
-  
+  dir = new Vector2(1, 0);
 
   grid: Instruction[][];
 
@@ -23,7 +23,11 @@ class BefungeInterpreter {
   }
 
   walk() {
-    let instruction = this.grid[this.posX][this.posY];
+    let instruction = this.grid[this.pos.y][this.pos.x];
+    if (!isNaN(parseInt(instruction))) { // instruction is a number
+        let num = parseInt(instruction)
+        this.stack.push(num)
+    }
   }
 
   /** returns a 2D array with the code */
@@ -31,3 +35,4 @@ class BefungeInterpreter {
     return code.split("\n").map((line) => line.split(""));
   }
 }
+
