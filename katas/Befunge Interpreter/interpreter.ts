@@ -61,6 +61,7 @@ export class BefungeInterpreter {
       case " ": {
         break;
       }
+
       // change direction
       case "<": {
         this.dir.set(-1, 0);
@@ -86,6 +87,26 @@ export class BefungeInterpreter {
           [0, 1],
         ][Math.round(Math.random() * 3)];
         this.dir.set(newDir[0], newDir[1]);
+        break;
+      }
+
+      // logic direction
+      case "_": {
+        const [v] = this.pop(1);
+        if (v === 0) {
+          this.dir.set(1, 0);
+        } else {
+          this.dir.set(-1, 0);
+        }
+        break;
+      }
+      case "|": {
+        const [v] = this.pop(1);
+        if (v === 0) {
+          this.dir.set(0, 1);
+        } else {
+          this.dir.set(0, -1);
+        }
         break;
       }
 
@@ -178,7 +199,7 @@ export class BefungeInterpreter {
           row
             .map((instruction, x) => {
               if (x == this.pos.x && y == this.pos.y) {
-                return "\u001b[32m€\u001b[39m";
+                return "\u001b[32m€\u001b[0m";
               } else {
                 return instruction;
               }

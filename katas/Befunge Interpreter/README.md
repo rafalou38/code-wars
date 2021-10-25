@@ -8,20 +8,20 @@ Your task is to write a method which will interpret Befunge-93 code! Befunge-93 
     [x] * Multiplication: Pop a and b, then push a*b.
     [x] / Integer division: Pop a and b, then push b/a, rounded down. If a is zero, push zero.
     [x] % Modulo: Pop a and b, then push the b%a. If a is zero, push zero.
-    [ ] ! Logical NOT: Pop a value. If the value is zero, push 1; otherwise, push zero.
-    [ ] ` (backtick) Greater than: Pop a and b, then push 1 if b>a, otherwise push zero.
-    [ ] > Start moving right.
-    [ ] < Start moving left.
-    [ ] ^ Start moving up.
-    [ ] v Start moving down.
-    [ ] ? Start moving in a random cardinal direction.
-    [ ] _ Pop a value; move right if value = 0, left otherwise.
-    [ ] | Pop a value; move down if value = 0, up otherwise.
+    [x] ! Logical NOT: Pop a value. If the value is zero, push 1; otherwise, push zero.
+    [x] ` (backtick) Greater than: Pop a and b, then push 1 if b>a, otherwise push zero.
+    [x] > Start moving right.
+    [x] < Start moving left.
+    [x] ^ Start moving up.
+    [x] v Start moving down.
+    [x] ? Start moving in a random cardinal direction.
+    [x] _ Pop a value; move right if value = 0, left otherwise.
+    [x] | Pop a value; move down if value = 0, up otherwise.
     [ ] " Start string mode: push each character's ASCII value all the way up to the next ".
     [ ] : Duplicate value on top of the stack. If there is nothing on top of the stack, push a 0.
     [ ] \ Swap two values on top of the stack. If there is only one value, pretend there is an extra 0 on bottom of the stack.
     [ ] $ Pop value from the stack and discard it.
-    [ ] . Pop value and output as an integer.
+    [x] . Pop value and output as an integer.
     [ ] , Pop value and output the ASCII character represented by the integer code that is stored in the value.
     [ ] # Trampoline: Skip next cell.
     [ ] p A "put" call (a way to store a value for later use). Pop y, x and v, then change the character at the position (x,y) in the program to the [ ] character with ASCII value v.

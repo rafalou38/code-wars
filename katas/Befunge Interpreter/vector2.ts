@@ -19,4 +19,7 @@ export class Vector2 {
       this.y % height
     );
   }
+  toString() {
+    return `{ x: ${this.x} y: ${this.y} }`;
+  }
 }
