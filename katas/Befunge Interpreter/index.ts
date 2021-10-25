@@ -1,38 +1,22 @@
-class BefungeInterpreter {
-  width: number;
-  height: number;
+import { BefungeInterpreter } from "./interpreter";
 
-  pos = new Vector2(0,0);
+const code = `
+vv  <      <
+    2
+    ^  v<
+ v1<?>3v4
+    ^   ^
+>  >?>  ?>5^
+    v   v
+ v9<?>7v6
+    v  v<
+    8
+ .  >  >   ^
+^<
 
-  dir = new Vector2(1, 0);
+`;
 
-  grid: Instruction[][];
-
-  stack: (number | string)[] = [];
-
-  finished = false;
-
-  constructor(code: string) {
-    this.grid = this.transformToMatrix(code);
-    this.height = this.grid.length;
-    this.width = this.grid[0].length;
-
-    while (finished) {
-      this.walk();
-    }
-  }
-
-  walk() {
-    let instruction = this.grid[this.pos.y][this.pos.x];
-    if (!isNaN(parseInt(instruction))) { // instruction is a number
-        let num = parseInt(instruction)
-        this.stack.push(num)
-    }
-  }
-
-  /** returns a 2D array with the code */
-  transformToMatrix(code: string): Instruction[][] {
-    return code.split("\n").map((line) => line.split(""));
-  }
-}
-
+const bef = new BefungeInterpreter(code, {
+  debug: true,
+  wait: true,
+}).run();

@@ -1,4 +1,4 @@
-declare type Instruction =
+export type Instruction =
   | "0"
   | "1"
   | "2"
@@ -20,6 +20,7 @@ declare type Instruction =
   | "<"
   | "^"
   | "v"
+  | "?"
   | "_"
   | "|"
   | '"'
@@ -31,4 +32,5 @@ declare type Instruction =
   | "#"
   | "p"
   | "g"
+  | " "
   | "@";

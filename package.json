@@ -1,15 +1,22 @@
 {
-    "name": "code-wars",
-    "description": "",
-    "version": "1.0.0",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/rafalou38/code-wars"
-    },
-    "keywords": [],
-    "author": "Rafael Martinez",
-    "license": "MIT"
+  "name": "code-wars",
+  "description": "",
+  "version": "1.0.0",
+  "scripts": {
+    "befunge": "ts-node ./katas/Befunge\\ Interpreter/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rafalou38/code-wars"
+  },
+  "keywords": [],
+  "author": "Rafael Martinez",
+  "license": "MIT",
+  "dependencies": {
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.4"
   }
+}
