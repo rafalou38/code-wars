@@ -17,17 +17,17 @@ Your task is to write a method which will interpret Befunge-93 code! Befunge-93 
     [x] ? Start moving in a random cardinal direction.
     [x] _ Pop a value; move right if value = 0, left otherwise.
     [x] | Pop a value; move down if value = 0, up otherwise.
-    [ ] " Start string mode: push each character's ASCII value all the way up to the next ".
-    [ ] : Duplicate value on top of the stack. If there is nothing on top of the stack, push a 0.
-    [ ] \ Swap two values on top of the stack. If there is only one value, pretend there is an extra 0 on bottom of the stack.
-    [ ] $ Pop value from the stack and discard it.
+    [x] " Start string mode: push each character's ASCII value all the way up to the next ".
+    [x] : Duplicate value on top of the stack. If there is nothing on top of the stack, push a 0.
+    [x] \ Swap two values on top of the stack. If there is only one value, pretend there is an extra 0 on bottom of the stack.
+    [x] $ Pop value from the stack and discard it.
     [x] . Pop value and output as an integer.
-    [ ] , Pop value and output the ASCII character represented by the integer code that is stored in the value.
-    [ ] # Trampoline: Skip next cell.
-    [ ] p A "put" call (a way to store a value for later use). Pop y, x and v, then change the character at the position (x,y) in the program to the [ ] character with ASCII value v.
-    [ ] g A "get" call (a way to retrieve data in storage). Pop y and x, then push ASCII value of the character at that position in the program.
-    [ ] @ End program.
-    [ ] (i.e. a space) No-op. Does nothing.
+    [x] , Pop value and output the ASCII character represented by the integer code that is stored in the value.
+    [x] # Trampoline: Skip next cell.
+    [x] p A "put" call (a way to store a value for later use). Pop y, x and v, then change the character at the position (x,y) in the program to the [ ] character with ASCII value v.
+    [x] g A "get" call (a way to retrieve data in storage). Pop y and x, then push ASCII value of the character at that position in the program.
+    [x] @ End program.
+    [x] (i.e. a space) No-op. Does nothing.
 
 The above list is slightly modified: you'll notice if you look at the Wikipedia page that we do not use the user input instructions and dividing by zero simply yields zero.
 

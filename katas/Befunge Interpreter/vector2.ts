@@ -15,8 +15,8 @@ export class Vector2 {
   }
   wrap(width: number, height: number) {
     this.set(
-      this.x % width, //
-      this.y % height
+      (width + this.x) % width, //
+      (height + this.y) % height
     );
   }
   toString() {

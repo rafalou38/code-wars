@@ -1,22 +1,16 @@
+import { readFileSync } from "fs";
 import { BefungeInterpreter } from "./interpreter";
 
-const code = `
-vv  <      <
-    2
-    ^  v<
- v1<?>3v4
-    ^   ^
->  >?>  ?>5^
-    v   v
- v9<?>7v6
-    v  v<
-    8
- .  >  >   ^
-^<
+function interpret(code: string) {
+  const bef = new BefungeInterpreter(code, {
+    debug: false,
+    wait: false,
+  });
 
-`;
+  bef.runSync();
+  return bef.output;
+}
 
-const bef = new BefungeInterpreter(code, {
-  debug: true,
-  wait: true,
-}).run();
+const code = readFileSync("./test.bf");
+const result = interpret(code.toString("utf-8"));
+console.log(result);

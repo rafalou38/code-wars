@@ -12,17 +12,20 @@ export class BefungeInterpreter {
 
   private dir = new Vector2(1, 0);
 
-  grid: Instruction[][];
+  grid: (Instruction | string)[][];
 
   output = "";
 
   stack: number[] = [];
 
+  private stringMode = false;
   private finished = false;
+  private skipNext = false;
 
   constructor(code: string, settings: ISettings = {}) {
     this.settings = settings;
-    code = code.trim();
+
+    if (settings.trim) code = code.trim();
 
     this.grid = this.transformToMatrix(code);
 
@@ -42,9 +45,27 @@ export class BefungeInterpreter {
       if (this.settings.wait) await this.waitKey();
     }
   }
+  runSync() {
+    while (!this.finished) {
+      if (this.settings.debug) this.showDebug();
+
+      this.walk();
+      this.pos.add(this.dir);
+      this.pos.wrap(this.width, this.height);
+
+      if (this.settings.wait)
+        console.warn("Don't use runSync if you want wait");
+    }
+  }
 
   private walk() {
     let instruction = this.grid[this.pos.y][this.pos.x];
+
+    if (this.skipNext) return (this.skipNext = false);
+
+    if (this.stringMode && instruction !== '"') {
+      return this.stack.push(instruction.charCodeAt(0));
+    }
 
     // instruction is a number
     if (!isNaN(parseInt(instruction))) {
@@ -56,6 +77,10 @@ export class BefungeInterpreter {
     switch (instruction) {
       case "@": {
         this.finished = true;
+        break;
+      }
+      case "#": {
+        this.skipNext = true;
         break;
       }
       case " ": {
@@ -85,7 +110,7 @@ export class BefungeInterpreter {
           [1, 0],
           [0, -1],
           [0, 1],
-        ][Math.round(Math.random() * 3)];
+        ][Math.floor(Math.random() * 4)];
         this.dir.set(newDir[0], newDir[1]);
         break;
       }
@@ -133,9 +158,9 @@ export class BefungeInterpreter {
         break;
       }
       case "%": {
-        const [a, b] = this.pop(2);
+        const [b, a] = this.pop(2);
         if (a === 0) this.stack.push(0);
-        else this.stack.push(a % b);
+        else this.stack.push(b % a);
         break;
       }
 
@@ -148,16 +173,55 @@ export class BefungeInterpreter {
       }
       case "`": {
         const [a, b] = this.pop(2);
-        if (a > b) this.stack.push(0);
-        else this.stack.push(1);
+        if (a > b) this.stack.push(1);
+        else this.stack.push(0);
+        break;
+      }
+
+      // stack manipulation
+      case "\\": {
+        const [a, b] = this.pop(2);
+        this.stack.push(b, a);
+        break;
+      }
+      case ":": {
+        if (this.stack.length === 0) this.stack.push(0);
+        this.stack.push(this.stack[this.stack.length - 1]);
+        break;
+      }
+      case "$": {
+        this.pop(1);
         break;
       }
 
       // strings
       case ".": {
         const [a] = this.pop(1);
-        // process.stdout.write(a.toString());
         this.output += a.toString();
+        if (!this.settings.debug) process.stdout.write(a.toString());
+
+        break;
+      }
+      case ",": {
+        const [a] = this.pop(1);
+        this.output += String.fromCharCode(a);
+        if (!this.settings.debug) process.stdout.write(String.fromCharCode(a));
+        break;
+      }
+      case '"': {
+        this.stringMode = !this.stringMode;
+        break;
+      }
+
+      case "p": {
+        const [v, x, y] = this.pop(3);
+
+        this.grid[y][x] = String.fromCharCode(v);
+        break;
+      }
+      case "g": {
+        const [x, y] = this.pop(2);
+        this.stack.push(this.grid[y][x].charCodeAt(0));
         break;
       }
 
@@ -172,7 +236,13 @@ export class BefungeInterpreter {
   }
 
   private pop(count: number) {
-    return this.stack.splice(this.stack.length - count, count);
+    let poped = this.stack.splice(this.stack.length - count, count);
+    poped = [
+      ...new Array(count - poped.length).fill(0), //
+      ...poped,
+    ];
+
+    return poped;
   }
   /** returns a 2D array with the code */
   private transformToMatrix(code: string): Instruction[][] {
